@@ -2,7 +2,7 @@
 // Helix: replace spheres with capsules (cheese logs)
 // Your task is to modify the createHelix function
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat, $*/
+/*global THREE, Coordinates, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -40,7 +40,10 @@ function createHelix( material, radius, tube, radialSegments, tubularSegments, h
 	///////////////
 	// YOUR CODE HERE: remove spheres, use capsules instead, going from point to point.
 	//
-	var sphGeom = new THREE.SphereGeometry( tube, tubularSegments, tubularSegments/2 );
+	//var sphGeom = new THREE.SphereGeometry( tube, tubularSegments, tubularSegments/2 );
+	var bottom = new THREE.Vector3();
+	var openTop = false;
+	var openBottom = false;
 	for ( var i = 0; i <= arc*radialSegments ; i++ )
 	{
 		// going from X to Z axis
@@ -48,10 +51,13 @@ function createHelix( material, radius, tube, radialSegments, tubularSegments, h
 		height * (i/(arc*radialSegments)) - height/2,
 		sine_sign * radius * Math.sin( i * 2*Math.PI / radialSegments ) );
 
-		var sphere = new THREE.Mesh( sphGeom, material );
-		sphere.position.copy( top );
+		//var sphere = new THREE.Mesh( sphGeom, material );
+		var capsule = createCapsule( material, tube, top, bottom, tubularSegments, openTop, openBottom );
+		//sphere.position.copy( top );
 
-		helix.add( sphere );
+		helix.add( capsule );
+		bottom.copy( top );
+		openBottom = true;
 	}
 	///////////////
 
