@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document, window*/
 
-var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = ".";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -23,10 +23,10 @@ function SquareGeometry() {
 
 	// Change this array to select the correct part of the texture
 	var uvs = [];
-	uvs.push( new THREE.Vector2( 0.0, 0.0 ) );
-	uvs.push( new THREE.Vector2( 1.0, 0.0 ) );
-	uvs.push( new THREE.Vector2( 1.0, 1.0 ) );
-	uvs.push( new THREE.Vector2( 0.0, 1.0 ) );
+	uvs.push( new THREE.Vector2( 0.75, 0.25 ) );
+	uvs.push( new THREE.Vector2( 1.0, 0.25 ) );
+	uvs.push( new THREE.Vector2( 1.0, 0.5 ) );
+	uvs.push( new THREE.Vector2( 0.75, 0.5 ) );
 
 	// generate faces
 	geo.faces.push( new THREE.Face3( 0, 1, 2 ) );
