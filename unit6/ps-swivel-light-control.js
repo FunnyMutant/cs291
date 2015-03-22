@@ -255,6 +255,11 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
+	
+	var lightAngle = effectController.angle * Math.PI / 180;
+	light.position.x = Math.cos(lightAngle);
+	light.position.z = Math.sin(lightAngle);
+	
 	renderer.render(scene, camera);
 }
 

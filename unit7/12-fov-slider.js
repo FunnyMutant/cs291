@@ -14,7 +14,12 @@ var eyeTargetScale;
 // Your FOV slider should go in this function
 // the value of the slider should be accessible globally via: effectController.fov
 function setupGui() {
-	effectController = {};
+	effectController = {
+		fov : 40
+	};
+	
+	var gui = new dat.GUI();
+	gui.add( effectController, "fov", 1.0, 179.0 ).name("field of view");
 }
 
 function init() {
@@ -322,6 +327,10 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
+	
+	camera.fov = effectController.fov;
+	camera.updateProjectionMatrix();
+	
 	renderer.render(scene, camera);
 }
 

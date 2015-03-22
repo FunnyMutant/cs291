@@ -18,9 +18,12 @@ function fillScene() {
 	// LIGHTS
 	// Student: remove the ambient light, add a headlight;
 	// See render() for making the headlight match the camera position
-	scene.add( new THREE.AmbientLight( 0xFFFFFF ) );
+	//scene.add( new THREE.AmbientLight( 0xFFFFFF ) );
 	// headlight = new ... point light
 	////////////////////
+	headlight = new THREE.PointLight( 0xFFFFFF, 1.0 );
+	headlight.position.set( 1000, 1000, 1000 );
+	scene.add( headlight );
 
 
 	// MATERIALS
@@ -260,7 +263,7 @@ function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
 
-	// Student: set the headlight's position here.
+	headlight.position = camera.position;
 
 	///////////////
 

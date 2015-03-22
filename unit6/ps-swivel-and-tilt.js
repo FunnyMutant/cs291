@@ -255,6 +255,16 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
+	
+	var azimuthRadians = effectController.azimuth * Math.PI / 180.0;
+	var altitudeRadian = effectController.altitude * Math.PI / 180.0;
+	var cosAltitude = Math.cos(altitudeRadian);
+	light.position.set(
+		Math.cos(azimuthRadians) * cosAltitude,
+		Math.sin(altitudeRadian),
+		Math.sin(azimuthRadians) * cosAltitude
+	);
+	
 	renderer.render(scene, camera);
 }
 
